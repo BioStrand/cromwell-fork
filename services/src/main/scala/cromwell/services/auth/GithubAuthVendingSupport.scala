@@ -52,6 +52,7 @@ trait GithubAuthVendingSupport extends AskSupport with StrictLogging {
 
   def importAuthProvider(config: Config)(implicit timeout: Timeout): ErrorOr[Option[ImportAuthProvider]] = {
     val isAuthAzure = config.as[Boolean]("services.GithubAuthVending.config.auth.azure")
+    val directGithubToken = config.as[Boolean]("services.GithubAuthVending.config.use-local-github-token")
 
     if (isAuthAzure) {
       val azureToken = AzureCredentials.getAccessToken()
@@ -59,6 +60,11 @@ trait GithubAuthVendingSupport extends AskSupport with StrictLogging {
         case Valid(token) => Option(importAuthProvider(token)).validNel
         case Invalid(err) => s"Failed to fetch Azure token. Error: ${err.toString}".invalidNel
       }
+    } else if (directGithubToken) {
+      // Generate a random token for testing purposes
+      val token = scala.util.Random.alphanumeric.take(16).mkString
+      Option(importAuthProvider(token)).validNel
+
     } else None.validNel
   }
 }

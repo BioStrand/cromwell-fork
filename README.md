@@ -1,5 +1,14 @@
 [![codecov](https://codecov.io/gh/broadinstitute/cromwell/branch/develop/graph/badge.svg)](https://codecov.io/gh/broadinstitute/cromwell)
 
+# BioStrand Cromwell fork
+
+This fork was made because we did not want to wait for importing wdls from github to be implemented in the main Cromwell repository. We needed this feature for our own Cromwell instance, so we implemented it ourselves.
+This fork is not intended to be used by anyone else, but if you want to use it, feel free to do so. We will not provide any support for this fork, but we will accept pull requests if you want to contribute.
+
+
+
+
+
 ## Welcome to Cromwell
 
 Cromwell is an open-source Workflow Management System for bioinformatics. Licensing is [BSD 3-Clause](LICENSE.txt).
